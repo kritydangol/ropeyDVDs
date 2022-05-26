@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - RopeyDVD</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/nav.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/owl.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/RopeyDVD.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic SC">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <header>
+            <!-- The overlay -->
+            <div id="myNav" class="overlay">
+
+              <!-- Button to close the overlay navigation -->
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+              <!-- Overlay content -->
+              <div class="overlay-content">
+                @*<a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>*@
+                @*<a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="RegisterAdmin">Register Manager</a>*@
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="DVDTitles" asp-action="SelectActors">Search DVDs</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Admin</a>
+              </div>
+
+            </div>
+           <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+               <div class="container-fluid">
+                   <div class="row mx-auto">
+                        <!-- open/show the overlay navigation menu -->
+                        <div class="col-md-1 col-4">
+                            <div class="menu" onclick="openNav()">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+        
+                        <a  asp-controller="Home" asp-action="Index" class="text-center col-md-10 col-8">
+                            <img src="@Url.Content("~/imgs/nobg/ropey.png")" alt="logo" class="nav-logo logo" />
+                        </a>
+                        <div class="col-md-1 col-12 my-auto">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a class="btn btn-secondary" asp-area="" asp-controller="Auth" asp-action="Login" >
+                                    Login
+                                </a>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="btn btn-secondary" asp-area="" asp-controller="Auth" asp-action="Login" >
+                                    Logout
+                                </a>
+                            }
+                        </div>
+                   </div>
+               </div>
+            </nav>
+
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer>
+        	<div class="footer-top">
+		        <div class="container">
+		        	<div class="row">
+		        		<div class="col-md-4 col-lg-4 footer-about wow fadeInUp">
+		        			<img class="logo-footer logo" src="/imgs/nobg/ropey.png" alt="logo-footer">
+		        			<p>
+		        				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		        			</p>
+	                    </div>
+		        		<div class="col-md-4 col-lg-4 offset-lg-1 footer-contact wow fadeInDown">
+		        			<h3>Contact</h3>
+		                	<p><i class="fa fa-map-marker"></i><a href="https://tinyurl.com/ye26uft6" target="_blank">Kamal Marg, Kathmandu 44600</a></p>
+		                	<p><i class="fa fa-phone"></i><a href="tel:015970012">015970012</a></p>
+		                	<p><i class="fa fa-envelope"></i><a href="mailto:hello@domain.com">hello@domain.com</a></p>
+		                	<p><i class="fa fa-skype"></i>Ropey_DVDS</p>
+	                    </div>
+	                    <div class="col-md-4 col-lg-3 footer-social wow fadeInUp">
+	                    	<h3>Follow us</h3>
+	                    	<p>
+	                    		<a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a> 
+								<a href="https://twitter.com/?lang=en" target="_blank"><i class="fa fa-twitter"></i></a> 
+								<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a> 
+								<a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a>
+	                    	</p>
+	                    </div>
+		            </div>
+		        </div>
+	        </div>
+	        <div class="footer-bottom text-center">
+	           	<div class="footer-copyright">
+	                <p class="m-0">&copy; Ropey DVDs Pvt Ltd., 2022</p>
+	            </div>
+	        </div>
+        </footer>
+
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-3.3.1.min.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

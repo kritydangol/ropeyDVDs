@@ -1,0 +1,41 @@
+﻿@model RopeyDVD.Models.DVDCopy
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Delete";
+}
+
+<div class="card p-5 col-lg-9 col-12 mx-auto">
+    <h1 class="text-center">Delete DVD</h1>
+
+    <p class="txt-secondary text-center">Are you sure you want to delete this?</p>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DatePurchased)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DatePurchased)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DVDTitle)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DVDTitle.DVDNumber)
+            </dd>
+        </dl>
+    
+        <form asp-action="Delete">
+            <div class="row">
+                <input type="hidden" asp-for="CopyNumber" />
+                <div class="form-group col-12 col-md-4">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+                <div class="col-12 col-md-4">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

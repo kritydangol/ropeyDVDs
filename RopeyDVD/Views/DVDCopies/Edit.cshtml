@@ -1,0 +1,39 @@
+﻿@model RopeyDVD.Models.DVDCopy
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card p-5 col-lg-9 col-12 mx-auto">
+    <h1 class="text-center">Edit DVD</h1>
+
+    <hr />
+    <form asp-action="Edit">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CopyNumber" />
+            <div class="form-group">
+                <label asp-for="DatePurchased" class="control-label"></label>
+                <input asp-for="DatePurchased" class="form-control" />
+                <span asp-validation-for="DatePurchased" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DVDNumber" class="control-label"></label>
+                <select asp-for="DVDNumber" class="form-control" asp-items="ViewBag.DVDNumber"></select>
+                <span asp-validation-for="DVDNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group col-12 col-md-4">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div class="col-12 col-md-4">
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

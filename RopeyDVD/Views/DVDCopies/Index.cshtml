@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RopeyDVD.Models.DVDCopy>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "DVDs";
+}
+
+<div class="row mx-auto mb-4">
+    <div class="col-md-9 col-12">
+        <h1>DVDs</h1>
+    </div>
+    <div class="col-md-3 col-12">
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New</a>
+        </p>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePurchased)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DVDTitle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePurchased)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DVDTitle.DVDNumber)
+            </td>
+            <td>
+                <a class="btn edit" asp-action="Edit" asp-route-id="@item.CopyNumber">Edit</a>
+                <a class="btn details" asp-action="Details" asp-route-id="@item.CopyNumber">Details</a>
+                <a class="btn delete" asp-action="Delete" asp-route-id="@item.CopyNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

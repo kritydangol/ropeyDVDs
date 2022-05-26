@@ -1,0 +1,48 @@
+﻿
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Payment";
+}
+
+<div class="card p-5 col-lg-9 col-12 mx-auto">
+    <h1 class="text-center">Payment Loans</h1>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-7">Loan Number</dt>
+        <dd class = "col-sm-5">@Model.LoanNumber</dd>
+        <dt class = "col-sm-7">Copy Number</dt>
+        <dd class = "col-sm-5">@Model.CopyNumber</dd>
+        <dt class = "col-sm-7">DVD Title</dt>
+        <dd class = "col-sm-5">@Model.DVDTitle</dd>
+        <dt class = "col-sm-7">Date Out</dt>
+        <dd class = "col-sm-5">@Model.DateOut.ToString("dd-MMMM-yyyy")</dd>
+        <dt class = "col-sm-7">Date Due</dt>
+        <dd class = "col-sm-5">@Model.DateDue.ToString("dd-MMMM-yyyy")</dd>
+        <dt class = "col-sm-7">Date Returned</dt>
+        <dd class = "col-sm-5">@Model.DateReturned.ToString("dd-MMMM-yyyy")</dd>
+        <dt class = "col-sm-7">Member</dt>
+        <dd class = "col-sm-5">@Model.Member</dd>
+        <dt class = "col-sm-7">Membership Type</dt>
+        <dd class = "col-sm-5">@Model.Membership</dd>
+        <dt class = "col-sm-7">Loan Type</dt>
+        <dd class = "col-sm-5">@Model.LoanType</dd>
+        <dt class = "col-sm-7">Standard Charge (per day @Model.StandardCharge</dt>
+        <dd class = "col-sm-5">@(Model.StandardCharge * Model.LoanDuration)</dd>
+        @if (Model.DateReturned.Subtract(Model.DateOut).Days > Model.LoanDuration)
+        {
+              <dt class = "col-sm-7">
+                  Penalty Charge (per Day @Model.PenaltyCharge)
+              </dt>
+              <dd class = "col-sm-5">@((Model.DateReturned.Subtract(Model.DateOut).Days - Model.LoanDuration ) * Model.PenaltyCharge)</dd>
+        
+        }
+
+    </dl>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <a class="btn btn-secondary" asp-action="Admin" asp-controller="Auth">Back to Home page</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+﻿@model Loan
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "SelectDate";
+}
+
+<div class="card p-5 col-lg-9 col-12 mx-auto">
+    <h1 class="text-center">Select Date</h1>
+    <hr />
+    <form asp-action="LoanedOutDVDCopies">
+        <div class="row mx-auto">
+            <div class="col-md-8 col-12 mt-2">
+                <input type="date" value="@ViewBag.SelectedDate" name="SearchDate" />
+            </div>
+            <div class="col-md-4 col-12">
+                <button type="submit" class="btn btn-primary">Search DVDs by Date</button>
+            </div>
+        </div>
+    </form>
+</div>

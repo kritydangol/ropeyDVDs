@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Older DVDs";
+}
+<div class="row mx-auto mb-4">
+    <div class="col-md-9 col-12">
+        <h1>Older DVDs</h1>
+    </div>
+    <div class="col-md-3 col-12">
+        <form asp-action="RemovedOldCopies">
+            <button type="submit" class="btn btn-primary">Remove Old DVD Copies</button>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Copy Number</th>
+            <th>DVD Titles</th>
+            <th>Date Purchased</th>
+            <th>Days Old</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (DateTime.Now.Subtract(item.DatePurchased).Days > 365)
+            {
+                <tr>
+                    <td>@item.Copy</td>
+                    <td>@item.DVDTitle</td>
+                    <td>@item.DatePurchased</td>
+                    <td>@DateTime.Now.Subtract(item.DatePurchased).Days</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

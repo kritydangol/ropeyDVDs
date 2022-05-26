@@ -1,0 +1,77 @@
+﻿@*@model IEnumerable<Ropey_DvDs_Group_CW.Models.MemberModel>*@
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Index";
+}
+
+<div class="row mx-auto mb-4">
+    <div class="col-md-9 col-12">
+        <h1>Members</h1>
+    </div>
+    <div class="col-md-3 col-12">
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New</a>
+        </p>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Membership
+            </th>
+            <th>
+                Currently loaned total DVDs
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.MemberFirstName
+            </td>
+            <td>
+                @item.MemberLastName
+            </td>
+            <td>
+                @item.MemberAddress
+            </td>
+            <td>
+                @item.MemberDOB
+            </td>
+             <td>
+                @item.Membership
+            </td>
+             <td>
+                @if (item.TotalAcceptLoans < item.TotalCurrentLoans)
+                {
+                        <p>Too Many DVDs (@item.TotalCurrentLoans)</p>
+                    }
+                    else
+                    {
+                        @item.TotalCurrentLoans
+                    }
+                </td>
+            <td>
+                <a class="btn edit" asp-action="Edit" asp-route-id="@item.MemberNumber">Edit</a>
+                <a class="btn details" asp-action="Details" asp-route-id="@item.MemberNumber">Details</a>
+                <a class="btn delete" asp-action="Delete" asp-route-id="@item.MemberNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
